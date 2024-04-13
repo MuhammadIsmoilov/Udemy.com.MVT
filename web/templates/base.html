@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        table {
+            width: 70%;
+            margin: auto;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        
+        th {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+        
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        a {
+            text-decoration: none;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .log{
+            margin-left: 1410px;
+        }
+        a:hover {
+            background-color: #333;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body>
+    <a href="{% url 'login' %}" class="log">Log Out</a>
+    <a href="{% url 'create_user' %}">Create_User</a>
+    <a href="{% url 'create_course' %}">Create_Course</a>
+    <a href="{% url 'create_lesson' %}">Create_Lesson</a>
+    {% if user.is_authenticated %}
+        <h1>List of Users</h1>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>First_name</th>
+                <th>Last_name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone_number</th>
+                <th>Tools</th>
+            </tr>
+            {% for custom_user in custom_user_list %}
+            <tr>
+                <td> {{custom_user.id}} </td>
+                <td> {{custom_user.first_name}} </td>
+                <td> {{custom_user.last_name}} </td>
+                <td> {{custom_user.address}} </td>
+                <td> {{custom_user.email}} </td>
+                <td> {{custom_user.phone_number}} </td>
+                <td>
+                    <a href="{% url 'edit_user' pk=custom_user.id %}">Edit User</a><br>
+                    <a href="{% url 'delete_user' pk=custom_user.id %}">Delete</a>
+                </td>  
+            </tr>
+            {% endfor %}
+        </table>
+
+       
+    {% else %}
+       
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+</body>
+</html>

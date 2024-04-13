@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    
+    h1 {
+        text-align: center;d
+        color: #333;
+    }
+    
+    table {
+        width: 70%;
+        margin: auto;
+        border-collapse: collapse;
+        background-color: white;
+    }
+    
+    th {
+        background-color: #333;
+        color: white;
+        padding: 10px;
+    }
+    
+    td {
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    
+    a {
+        text-decoration: none;
+        color: black;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    
+    a:hover {
+        background-color: #333;
+        color: white;
+    }
+    .log{
+        margin-left: 1395px;
+    }
+</style>
+</head>
+<body>
+    <a href="{% url 'login' %}" class="log">Log Out</a>
+    <a href="{% url 'create_user' %}">Create_User</a>
+    <a href="{% url 'create_course' %}">Create_Course</a>
+    <a href="{% url 'create_lesson' %}">Create_Lesson</a>
+
+    {% if user.is_authenticated %}
+    <h1>List of Courses</h1>
+    
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Course_name</th>
+            <th>Description</th>
+            {% comment %} <th>Enrollment Count</th> {% endcomment %}
+            <th>Tools</th>
+           
+            
+           
+        </tr>
+        {% for course in course_list %}
+    <tr>
+        <td> {{course.id}} </td>
+        <td> {{course.course_name}} </td>
+        <td> {{course.description}} </td>
+        <td>
+            <a href="{% url 'edit_course' pk=course.id %}">Edit Course</a><br>
+            <a href="{% url 'delete_course' pk=course.id %}">Delete</a>
+        </td>
+
+
+ 
+    </tr>
+{% endfor %}
+    </table>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+</body>
+</html>

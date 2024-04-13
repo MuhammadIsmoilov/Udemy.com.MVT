@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users detail</title>
+</head>
+<body>
+    {% block content %}
+    <h1>User detail</h1>
+    <p> Id: {{ object.id}} </p>
+    <p> Name: {{ object.first_name}} </p>
+    <p> Last name: {{ object.last_name}} </p>
+    <p> Address: {{ object.address}} </p>
+    <p> Email: {{ object.email}} </p>
+    <p> Phone number: {{ object.phone_number}} </p>
+    <p> Course name: {{ object.course_name}} </p>
+    {% endblock  %}
+</body>
+</html>

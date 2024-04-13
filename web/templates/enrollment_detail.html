@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrollment detail</title>
+</head>
+<body>
+    {% block content %}
+    <h1>User detail</h1>
+    <p> {{ enrollment.id}} </p>
+    <p> {{ user.id}} </p>
+    <p> {{ course.id}} </p>
+    <p> {{ object.enrollment_date}} </p>
+    {% endblock  %}
+</body>
+</html>
